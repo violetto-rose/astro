@@ -1,4 +1,5 @@
 import {
+    createProxyHandler,
     dummyPaymentHandler,
     DefaultJobQueuePlugin,
     DefaultSchedulerPlugin,
@@ -13,7 +14,9 @@ import 'dotenv/config';
 import path from 'path';
 
 const IS_DEV = process.env.APP_ENV === 'dev';
+const IS_WORKER_PROCESS = process.argv.some(arg => arg.includes('index-worker'));
 const serverPort = +process.env.PORT || 3000;
+const dashboardDevPort = Number(process.env.DASHBOARD_DEV_PORT ?? 5173);
 const storefrontUrl = process.env.STOREFRONT_URL || 'http://localhost:8002';
 const corsOrigins = process.env.CORS_ORIGIN
     ? process.env.CORS_ORIGIN.split(',').map(origin => origin.trim()).filter(Boolean)
@@ -29,6 +32,19 @@ export const config: VendureConfig = {
             credentials: true,
         },
         trustProxy: IS_DEV ? false : 1,
+        ...(IS_DEV
+            ? {
+                middleware: [{
+                    route: 'dashboard',
+                    beforeListen: true,
+                    handler: createProxyHandler({
+                        label: 'Vendure Dashboard Dev Server',
+                        route: 'dashboard',
+                        port: dashboardDevPort,
+                    }),
+                }],
+            }
+            : {}),
         // The following options are useful in development mode,
         // but are best turned off for production for security
         // reasons.
@@ -49,9 +65,9 @@ export const config: VendureConfig = {
     },
     dbConnectionOptions: {
         type: 'postgres',
-        // See the README.md "Migrations" section for an explanation of
-        // the `synchronize` and `migrations` options.
-        synchronize: false,
+        // Keep production on migrations, but allow first-time local dev
+        // to bootstrap an empty database from the server process only.
+        synchronize: IS_DEV && !IS_WORKER_PROCESS,
         migrations: [path.join(__dirname, './migrations/*.+(js|ts)')],
         logging: false,
         database: process.env.DB_NAME,
@@ -100,6 +116,7 @@ export const config: VendureConfig = {
             appDir: IS_DEV
                 ? path.join(__dirname, '../dist/dashboard')
                 : path.join(__dirname, 'dashboard'),
+            ...(IS_DEV ? { viteDevServerPort: 0 } : {}),
         }),
     ],
 };
