@@ -109,8 +109,8 @@ export type RootLoaderData = {
 import { getActiveOrder } from '~/providers/orders/order';
 
 export async function loader({ request, params, context }: DataFunctionArgs) {
-  const activeOrder = await getActiveOrder({ request });
   try {
+    const activeOrder = await getActiveOrder({ request });
     const collections = await getCollections(request, { take: 20 });
     const topLevelCollections = collections.filter(
       (collection) => collection.parent?.name === '__root_collection__',

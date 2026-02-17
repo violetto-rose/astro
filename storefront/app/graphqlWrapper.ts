@@ -37,14 +37,31 @@ async function sendQuery<Response, Variables = {}>(options: {
     }
   }
 
-  return fetch(API_URL, {
+  const response = await fetch(API_URL, {
     method: 'POST',
-    body: JSON.stringify(options),
+    body: JSON.stringify({
+      query: options.query,
+      variables: options.variables,
+    }),
     headers,
-  }).then(async (res) => ({
-    ...(await res.json()),
-    headers: res.headers,
-  }));
+  });
+
+  const rawBody = await response.text();
+  let parsedBody: GraphqlResponse<Response>;
+  try {
+    parsedBody = rawBody
+      ? (JSON.parse(rawBody) as GraphqlResponse<Response>)
+      : ({ data: {} as Response, errors: [] } as GraphqlResponse<Response>);
+  } catch {
+    throw new Error(
+      `Vendure API at ${API_URL} returned non-JSON (${response.status} ${response.statusText}): ${rawBody.slice(0, 200)}`,
+    );
+  }
+
+  return {
+    ...parsedBody,
+    headers: response.headers,
+  };
 }
 
 const baseSdk = getSdk<QueryOptions, unknown>(requester);
