@@ -2,22 +2,19 @@ import { RemixI18Next } from 'remix-i18next';
 
 import i18n from '~/i18n'; // your i18n configuration file
 import HttpBackend from 'i18next-http-backend';
-import {
-  IS_CF_PAGES,
-  safeRequireNodeDependency,
-} from '~/utils/platform-adapter';
-import { RemixI18NextOption } from 'remix-i18next/build/server';
+import { IS_CF_PAGES } from '~/utils/platform-adapter';
+import { RemixI18NextOption } from 'remix-i18next';
 import resourcesToBackend from 'i18next-resources-to-backend';
 import { findLanguageJSON } from '~/languages.server';
 
 export async function getPlatformBackend() {
   if (IS_CF_PAGES) {
     return HttpBackend;
-  } else {
-    return await safeRequireNodeDependency('i18next-fs-backend').then(
-      (module) => module.default,
-    );
   }
+
+  // Use in-memory JSON modules for node runtimes too so deployed functions
+  // do not depend on filesystem backend packaging.
+  return resourcesToBackend(findLanguageJSON);
 }
 
 /*
@@ -25,10 +22,6 @@ export async function getPlatformBackend() {
  * entry.server.tsx must use the http backend in a cloudflare context, but loaders/action functions need to load translations into memory
  */
 export async function getPlatformBackendApiCtx() {
-  if (IS_CF_PAGES) {
-    return resourcesToBackend(findLanguageJSON);
-  }
-
   return getPlatformBackend();
 }
 
