@@ -29,6 +29,33 @@ export const links: LinksFunction = () => [
     href: 'https://fonts.googleapis.com/css2?family=Quattrocento:wght@400;700&display=swap',
   },
   { rel: 'stylesheet', href: appStyles },
+  { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+  {
+    rel: 'icon',
+    type: 'image/png',
+    sizes: '32x32',
+    href: '/favicon-32x32.png',
+  },
+  {
+    rel: 'icon',
+    type: 'image/png',
+    sizes: '16x16',
+    href: '/favicon-16x16.png',
+  },
+  {
+    rel: 'icon',
+    type: 'image/png',
+    sizes: '192x192',
+    href: '/android-chrome-192x192.png',
+  },
+  {
+    rel: 'icon',
+    type: 'image/png',
+    sizes: '512x512',
+    href: '/android-chrome-512x512.png',
+  },
+  { rel: 'shortcut icon', href: '/favicon.ico' },
+  { rel: 'manifest', href: '/site.webmanifest' },
 ];
 import { getCollections } from '~/providers/collections/collections';
 import { activeChannel } from '~/providers/channel/channel';
@@ -146,7 +173,7 @@ export default function App() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" type="image/png"></link>
+        <meta name="theme-color" content="#ffffff" />
         <Meta />
         <Links />
       </head>
@@ -206,7 +233,7 @@ function DefaultSparseErrorPage({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" type="image/png"></link>
+        <meta name="theme-color" content="#ffffff" />
         <Meta />
         <Links />
       </head>

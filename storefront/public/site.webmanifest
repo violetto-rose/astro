@@ -1,0 +1,22 @@
+{
+  "name": "Rakshalokam Storefront",
+  "short_name": "Rakshalokam",
+  "description": "Rakshalokam spiritual storefront built with Remix and Vendure.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
