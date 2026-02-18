@@ -5,6 +5,8 @@
   "license": "",
   "type": "module",
   "scripts": {
+    "prebuild": "node -e \"require('fs').rmSync('.cache', { recursive: true, force: true })\"",
+    "predev": "node -e \"require('fs').rmSync('.cache', { recursive: true, force: true })\"",
     "build:cf": "cross-env CF_PAGES=1 remix build",
     "build:nf": "cross-env NETLIFY=1 remix build",
     "build": "remix build",

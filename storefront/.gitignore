@@ -1,0 +1,9 @@
+.cache
+build
+public/build
+.env
+.idea
+functions
+.netlify
+.wrangler
+node_modules
