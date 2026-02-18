@@ -114,7 +114,7 @@ export type RootLoaderData = {
 import { getActiveOrder } from '~/providers/orders/order';
 
 export async function loader({ request, params, context }: DataFunctionArgs) {
-  const sanitizedWhatsappNumber = resolveWhatsappNumber();
+  const { number: sanitizedWhatsappNumber } = resolveWhatsappNumber();
   try {
     const activeOrder = await getActiveOrder({ request });
     const collections = await getCollections(request, { take: 20 });
@@ -134,9 +134,25 @@ export async function loader({ request, params, context }: DataFunctionArgs) {
       whatsappNumber: sanitizedWhatsappNumber,
     };
 
-    return data(loaderData, { headers: activeCustomer._headers });
+    const headers = new Headers(activeCustomer._headers);
+    headers.set(
+      'Cache-Control',
+      'no-store, no-cache, must-revalidate, proxy-revalidate',
+    );
+    headers.set('Pragma', 'no-cache');
+    headers.set('Expires', '0');
+    headers.set('Surrogate-Control', 'no-store');
+    return data(loaderData, { headers });
   } catch (error) {
     // Return fallback data when database is not available
+    const headers = new Headers();
+    headers.set(
+      'Cache-Control',
+      'no-store, no-cache, must-revalidate, proxy-revalidate',
+    );
+    headers.set('Pragma', 'no-cache');
+    headers.set('Expires', '0');
+    headers.set('Surrogate-Control', 'no-store');
     const fallbackData: RootLoaderData = {
       activeOrder: null,
       activeCustomer: { activeCustomer: null, _headers: new Headers() },
@@ -149,13 +165,17 @@ export async function loader({ request, params, context }: DataFunctionArgs) {
       locale: 'en',
       whatsappNumber: sanitizedWhatsappNumber,
     };
-    return data(fallbackData);
+    return data(fallbackData, { headers });
   }
 }
 
 export default function App() {
   const [open, setOpen] = useState(false);
-  const loaderData = useLoaderData<RootLoaderData>();
+  const rawLoaderData = useLoaderData<typeof loader>();
+  const loaderData =
+    (rawLoaderData as any)?.type === 'DataWithResponseInit'
+      ? ((rawLoaderData as any).data as RootLoaderData)
+      : (rawLoaderData as unknown as RootLoaderData);
   const { collections, locale, activeOrder: loaderActiveOrder } = loaderData;
   const { i18n } = useTranslation();
   const {

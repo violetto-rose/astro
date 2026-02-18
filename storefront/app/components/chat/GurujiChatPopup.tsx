@@ -51,7 +51,9 @@ export function GurujiChatPopup({
       {isOpen ? (
         <div className="fixed bottom-5 right-5 z-40 w-[260px] sm:w-[300px] overflow-hidden rounded-2xl border border-primary-200 bg-surface shadow-hero-pack">
           <div className="flex items-center justify-between border-b border-primary-100 bg-surface-muted px-4 py-3">
-            <p className="text-sm font-semibold text-brand">Chat with Guruji</p>
+            <p className="text-sm font-semibold text-brand">
+              Live Astrology Guidance
+            </p>
             <button
               type="button"
               onClick={handleClose}
@@ -69,7 +71,13 @@ export function GurujiChatPopup({
                 className="h-full w-full object-cover"
               />
             </div>
-            <p className="mt-3 text-sm text-brand">Price is 500rs</p>
+            <p className="mt-3 text-sm text-brand">
+              Talk to Guruji for personalized remedies, auspicious timing, and
+              gemstone guidance tailored to you.
+            </p>
+            <p className="mt-2 text-xs text-primary-700">
+              Intro session ₹500 • WhatsApp only
+            </p>
             {whatsappUrl ? (
               <a
                 href={whatsappUrl}
@@ -78,7 +86,7 @@ export function GurujiChatPopup({
                 className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-primary-600 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
               >
                 <WhatsAppIcon className="h-4 w-4" />
-                Chat on WhatsApp
+                Start WhatsApp Chat
               </a>
             ) : (
               <button
