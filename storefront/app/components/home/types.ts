@@ -15,3 +15,14 @@ export type ProductLike = {
   price: number;
   oldPrice: number;
 };
+
+export interface HeroSlide {
+  id: number;
+  variant: 'center' | 'imageLeft';
+  title: string;
+  subtitle: string;
+  image: string;
+  cta: string;
+  link: string;
+  price?: string;
+}

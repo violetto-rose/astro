@@ -1,21 +1,29 @@
-import {
-  BoltIcon,
-  HeartIcon,
-  ScaleIcon,
-  ShieldCheckIcon,
-  SparklesIcon,
-} from '@heroicons/react/24/outline';
 import type { CollectionItem, ProductLike } from './types';
 
 export const purposeItems = [
-  { label: 'Wealth', icon: SparklesIcon },
-  { label: 'Health', icon: HeartIcon },
-  { label: 'Love', icon: HeartIcon },
-  { label: 'Luck', icon: SparklesIcon },
-  { label: 'Protection', icon: ShieldCheckIcon },
-  { label: 'Peace', icon: BoltIcon },
-  { label: 'Courage', icon: BoltIcon },
-  { label: 'Balance', icon: ScaleIcon },
+  { label: 'Wealth', iconSrc: '/assets/wealth.svg' },
+  { label: 'Health', iconSrc: '/assets/health.svg' },
+  { label: 'Love', iconSrc: '/assets/love.svg' },
+  { label: 'Luck', iconSrc: '/assets/luck.svg' },
+  { label: 'Protection', iconSrc: '/assets/protection.svg' },
+  { label: 'Peace', iconSrc: '/assets/peace.svg' },
+  { label: 'Courage', iconSrc: '/assets/courage.svg' },
+  { label: 'Balance', iconSrc: '/assets/balance.svg' },
+];
+
+export const rashiItems = [
+  { label: 'Aries', iconSrc: '/assets/aries.svg' },
+  { label: 'Taurus', iconSrc: '/assets/taurus.svg' },
+  { label: 'Gemini', iconSrc: '/assets/gemini.svg' },
+  { label: 'Cancer', iconSrc: '/assets/cancer.svg' },
+  { label: 'Leo', iconSrc: '/assets/leo.svg' },
+  { label: 'Virgo', iconSrc: '/assets/virgo.svg' },
+  { label: 'Libra', iconSrc: '/assets/libra.svg' },
+  { label: 'Scorpio', iconSrc: '/assets/scorpio.svg' },
+  { label: 'Sagittarius', iconSrc: '/assets/sagittarius.svg' },
+  { label: 'Capricorn', iconSrc: '/assets/capricorn.svg' },
+  { label: 'Aquarius', iconSrc: '/assets/aquarius.svg' },
+  { label: 'Pisces', iconSrc: '/assets/pisces.svg' },
 ];
 
 export function toProduct(

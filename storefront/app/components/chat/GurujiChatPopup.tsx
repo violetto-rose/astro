@@ -49,33 +49,33 @@ export function GurujiChatPopup({
   return (
     <>
       {isOpen ? (
-        <div className="fixed bottom-5 right-5 z-40 w-[260px] sm:w-[300px] overflow-hidden rounded-2xl border border-primary-200 bg-surface shadow-hero-pack">
-          <div className="flex items-center justify-between border-b border-primary-100 bg-surface-muted px-4 py-3">
-            <p className="text-sm font-semibold text-brand">
+        <div className="fixed bottom-5 right-5 z-50 w-[280px] sm:w-[320px] overflow-hidden rounded-2xl border border-secondary-300 bg-white shadow-[0_18px_45px_rgba(67,43,33,0.28)] animate-dropIn">
+          <div className="flex items-center justify-between border-b border-secondary-400/50 bg-gradient-to-r from-primary-700 to-secondary-600 px-4 py-3">
+            <p className="text-sm font-semibold text-white">
               Live Astrology Guidance
             </p>
             <button
               type="button"
               onClick={handleClose}
               aria-label="Close chat"
-              className="rounded-full p-1 text-primary-700 hover:bg-primary-50"
+              className="rounded-full p-1 text-white/90 hover:bg-white/20"
             >
               <XMarkIcon className="h-4 w-4" />
             </button>
           </div>
-          <div className="px-4 py-4">
-            <div className="h-40 w-full overflow-hidden rounded-xl bg-primary-50 ring-1 ring-primary-100">
+          <div className="bg-secondary-50/70 px-4 py-4">
+            <div className="h-40 w-full overflow-hidden rounded-xl border border-secondary-300 bg-secondary-100">
               <img
                 src="/guruji-placeholder.svg"
                 alt="Guruji"
                 className="h-full w-full object-cover"
               />
             </div>
-            <p className="mt-3 text-sm text-brand">
+            <p className="mt-3 text-sm text-temple-brown">
               Talk to Guruji for personalized remedies, auspicious timing, and
               gemstone guidance tailored to you.
             </p>
-            <p className="mt-2 text-xs text-primary-700">
+            <p className="mt-2 text-xs font-semibold text-primary-700">
               Intro session ₹500 • WhatsApp only
             </p>
             {whatsappUrl ? (
@@ -83,7 +83,7 @@ export function GurujiChatPopup({
                 href={whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-primary-600 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-700"
+                className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-green-600 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-green-700"
               >
                 <WhatsAppIcon className="h-4 w-4" />
                 Start WhatsApp Chat
@@ -107,8 +107,9 @@ export function GurujiChatPopup({
           type="button"
           onClick={handleOpen}
           aria-label="Open WhatsApp chat"
-          className="fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-primary-600 text-white shadow-hero-pack transition-colors hover:bg-primary-700"
+          className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-green-600 text-white shadow-[0_14px_30px_rgba(67,43,33,0.35)] transition-all hover:scale-105 hover:bg-green-700"
         >
+          <span className="absolute inset-0 rounded-full border border-temple-brown/45 animate-ping" />
           <WhatsAppIcon className="h-6 w-6" />
         </button>
       ) : null}

@@ -2,7 +2,7 @@ import { Link } from '@remix-run/react';
 
 export function HeroSection({ heroImage }: { heroImage?: string }) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-primary-100 via-primary-50 to-white border-b border-primary-100">
+    <section className="relative overflow-hidden bg-gradient-to-br from-secondary-50 via-white to-primary-50 border-b border-secondary-200">
       {heroImage ? (
         <img
           src={`${heroImage}?w=1900&h=900`}
@@ -14,7 +14,7 @@ export function HeroSection({ heroImage }: { heroImage?: string }) {
 
       <div className="relative max-w-[1280px] mx-auto px-6 min-h-[420px] lg:min-h-[500px] py-12 lg:py-16 flex items-end">
         <div className="w-full grid lg:grid-cols-[360px_1fr] gap-10 items-end">
-          <div className="bg-white border border-primary-200 rounded-2xl p-7 text-brand max-w-[360px]">
+          <div className="bg-secondary-50/80 border border-secondary-200 rounded-2xl p-7 text-brand max-w-[360px]">
             <p className="text-primary-700 font-semibold uppercase tracking-wide text-sm">
               Special Discount Offer
             </p>
@@ -24,7 +24,7 @@ export function HeroSection({ heroImage }: { heroImage?: string }) {
             <div className="mt-5 inline-flex rounded-lg px-4 py-2 bg-primary-600 text-white font-semibold text-lg">
               Use code - TRILOK15
             </div>
-            <p className="mt-3 text-sm text-zinc-600">
+            <p className="mt-3 text-sm text-temple-brown">
               Limited period offer on selected collections.
             </p>
           </div>
@@ -36,7 +36,7 @@ export function HeroSection({ heroImage }: { heroImage?: string }) {
             <h1 className="mt-4 text-5xl md:text-7xl tracking-wide">
               RAKSHALOKAM
             </h1>
-            <p className="mt-4 text-lg md:text-2xl text-zinc-700 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg md:text-2xl text-temple-brown max-w-2xl mx-auto">
               Clean, intentional pieces designed with traditional meaning and
               modern form.
             </p>

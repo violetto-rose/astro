@@ -26,7 +26,7 @@ export function Header({
     <header
       className={classNames(
         isScrollingUp ? 'sticky top-0 z-30 animate-dropIn' : '',
-        'bg-surface border-b border-primary-100',
+        'bg-temple-brown-dark/95 backdrop-blur border-b border-secondary-500/30 shadow-lg',
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
@@ -34,11 +34,11 @@ export function Header({
           <img src="/logo.svg" alt="Rakshalokam Logo" className="h-8 w-auto" />
         </Link>
         <nav className="hidden md:flex flex-1 justify-center">
-          <ul className="flex items-center gap-6 text-sm text-brand font-medium">
+          <ul className="flex items-center gap-6 text-base text-secondary-50 font-serif tracking-wide">
             {navCollections.map((collection) => (
               <li key={collection.id}>
                 <Link
-                  className="hover:text-brand transition-colors whitespace-nowrap"
+                  className="hover:text-saffron-light transition-colors whitespace-nowrap"
                   to={'/collections/' + collection.slug}
                   prefetch="intent"
                 >
@@ -48,7 +48,7 @@ export function Header({
             ))}
           </ul>
         </nav>
-        <div className="flex items-center gap-2 text-brand">
+        <div className="flex items-center gap-2 text-secondary-50">
           <div className="flex-1 sm:flex-none sm:w-44 md:w-56 lg:w-64">
             <SearchBar />
           </div>
@@ -57,18 +57,18 @@ export function Header({
             aria-label={
               isSignedIn ? t('account.myAccount') : t('account.signIn')
             }
-            className="p-2 rounded-full hover:bg-primary-50 transition-colors duration-200"
+            className="p-2 rounded-full hover:bg-secondary-100/15 transition-colors duration-200"
           >
             <UserIcon className="h-5 w-5" />
           </Link>
           <button
-            className="relative p-2 rounded-full hover:bg-primary-50 transition-colors duration-200"
+            className="relative p-2 rounded-full hover:bg-secondary-100/15 transition-colors duration-200"
             onClick={onCartIconClick}
             aria-label="Open cart tray"
           >
             <ShoppingBagIcon className="h-5 w-5" />
             {cartQuantity ? (
-              <span className="absolute -top-0.5 -right-0.5 min-w-5 h-5 px-1.5 rounded-full bg-primary-600 text-white text-xs font-semibold flex items-center justify-center">
+              <span className="absolute -top-0.5 -right-0.5 min-w-5 h-5 px-1.5 rounded-full bg-saffron text-temple-brown-dark text-xs font-bold flex items-center justify-center">
                 {cartQuantity}
               </span>
             ) : null}

@@ -6,15 +6,19 @@ import { Divider } from './Divider';
 export function RudrakshaSection({
   heroCollection,
   products,
+  title,
+  subtitle
 }: {
   heroCollection?: CollectionItem;
   products: ProductLike[];
+  title?: string;
+  subtitle?: string;
 }) {
   return (
     <section className="max-w-[1280px] mx-auto px-6 py-8">
-      <SectionHeader title="Single Rudraksha Beads" viewAll />
+      <SectionHeader title={title || "Single Rudraksha Beads"} viewAll />
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:grid-rows-2">
-        <div className="bg-white border border-primary-100 rounded-xl overflow-hidden flex flex-col lg:row-span-2">
+        <div className="bg-white border border-secondary-200 rounded-xl overflow-hidden flex flex-col lg:row-span-2">
           {heroCollection?.featuredAsset?.preview ? (
             <img
               src={`${heroCollection.featuredAsset.preview}?w=860&h=950`}
@@ -22,12 +26,12 @@ export function RudrakshaSection({
               className="h-[500px] lg:h-full w-full object-cover"
             />
           ) : null}
-          <div className="bg-primary-600 text-white p-5 lg:p-6">
+          <div className="bg-gradient-to-r from-primary-700 to-primary-600 text-white p-5 lg:p-6">
             <h3 className="text-2xl lg:text-3xl leading-none font-semibold">
-              Original Nepali Rudraksha
+              {title || "Original Nepali Rudraksha"}
             </h3>
             <p className="mt-2 text-lg lg:text-xl leading-tight">
-              1 Mukhi to 11 Mukhi - with certificate
+              {subtitle || "1 Mukhi to 11 Mukhi - with certificate"}
             </p>
           </div>
         </div>

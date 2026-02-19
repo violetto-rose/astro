@@ -15,7 +15,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"Cormorant Garamond"', ...defaultTheme.fontFamily.sans],
+        sans: ['Quattrocento', ...defaultTheme.fontFamily.sans],
         serif: ['Cinzel', ...defaultTheme.fontFamily.serif],
         display: ['"Yatra One"', ...defaultTheme.fontFamily.serif],
       },

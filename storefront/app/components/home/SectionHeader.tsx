@@ -15,7 +15,7 @@ export function SectionHeader({
       {viewAll ? (
         <Link
           to="/search"
-          className="text-base font-semibold text-primary-700 hover:text-primary-800 transition-colors"
+          className="text-base font-semibold text-secondary-700 hover:text-primary-700 transition-colors"
         >
           View all
         </Link>

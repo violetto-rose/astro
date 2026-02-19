@@ -2,10 +2,10 @@ import type { ProductLike } from './types';
 import { HomeProductCard } from './HomeProductCard';
 import { SectionHeader } from './SectionHeader';
 
-export function EnergySection({ products }: { products: ProductLike[] }) {
+export function EnergySection({ products, title }: { products: ProductLike[], title?: string }) {
   return (
     <section className="max-w-[1280px] mx-auto px-6 py-10">
-      <SectionHeader title="Explore Energy Stones" viewAll />
+      <SectionHeader title={title || "Explore Energy Stones"} viewAll />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
         {products.slice(0, 5).map((product) => (
           <HomeProductCard key={product.id} product={product} />
